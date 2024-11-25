@@ -2,6 +2,7 @@ package com.example.freshvibes;
 
 import android.content.Intent;
 import android.content.pm.ActivityInfo;
+import android.graphics.Color;
 import android.net.Uri;
 import android.os.Bundle;
 import android.view.View;
@@ -9,6 +10,7 @@ import android.view.animation.AccelerateInterpolator;
 import android.view.animation.AlphaAnimation;
 import android.view.animation.Animation;
 import android.widget.Button;
+import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.Toast;
 
@@ -18,11 +20,20 @@ import androidx.core.graphics.Insets;
 import androidx.core.view.ViewCompat;
 import androidx.core.view.WindowInsetsCompat;
 
-import java.util.concurrent.TimeUnit;
-
 public class MainActivity extends AppCompatActivity {
-ImageView login_button;
+EditText emailText;
+EditText passwordText;
+EditText passwordRegisterText;
+EditText emailRegisterText;
+EditText passwordRepeatRegisterText;
+EditText birthDateText;
+EditText nameText;
+ImageView loginButton;
 ImageView titleScreen;
+ImageView loginScreen;
+ImageView registerScreen;
+Button registerButton;
+Button registrationFinishButton;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -34,8 +45,45 @@ ImageView titleScreen;
             v.setPadding(systemBars.left, systemBars.top, systemBars.right, systemBars.bottom);
             return insets;
         });
-        login_button = findViewById(R.id.login_button);
-        login_button.setOnClickListener(v -> {});
+
+        loginButton = findViewById(R.id.loginButton);
+        loginButton.setOnClickListener(v -> {
+            Intent intent = new Intent(MainActivity.this, SecondActivity.class);
+            startActivity(intent);
+        });
+
+        loginScreen = findViewById(R.id.loginScreen);
+        registerScreen = findViewById(R.id.registerScreen);
+        passwordText = findViewById(R.id.passwordText);
+        emailText = findViewById(R.id.emailText);
+
+        registerButton = findViewById(R.id.registerButton);
+        passwordRegisterText = findViewById(R.id.passwordRegisterText);
+        emailRegisterText = findViewById(R.id.emailRegisterText);
+        passwordRepeatRegisterText = findViewById(R.id.passwordRepeatRegisterText);
+        birthDateText = findViewById(R.id.birthDateText);
+        nameText = findViewById(R.id.nameText);
+        registrationFinishButton = findViewById(R.id.registrationFinishButton);
+
+
+        registerButton.setOnClickListener(v -> {
+            registerScreen.setVisibility(View.VISIBLE);
+            passwordRegisterText.setVisibility(View.VISIBLE);
+            emailRegisterText.setVisibility(View.VISIBLE);
+            passwordRepeatRegisterText.setVisibility(View.VISIBLE);
+            birthDateText.setVisibility(View.VISIBLE);
+            nameText.setVisibility(View.VISIBLE);
+            registrationFinishButton.setVisibility(View.VISIBLE);
+            loginScreen.setVisibility(View.GONE);
+            loginButton.setVisibility(View.GONE);
+            emailText.setVisibility(View.GONE);
+            passwordText.setVisibility(View.GONE);
+        });
+
+        registrationFinishButton.setOnClickListener(v -> {
+            Intent intent = new Intent(MainActivity.this, SecondActivity.class);
+            startActivity(intent);
+        });
 
         titleScreen = findViewById(R.id.titleScreen);
         fadeOutAndHideImage(titleScreen);
