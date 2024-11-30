@@ -50,6 +50,7 @@ Button registrationFinishButton;
         loginButton.setOnClickListener(v -> {
             Intent intent = new Intent(MainActivity.this, SecondActivity.class);
             startActivity(intent);
+            finish();
         });
 
         loginScreen = findViewById(R.id.loginScreen);
